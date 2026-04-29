@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdullah Muzaffar — Operations Manager Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #040D18;
+    --navy2: #071628;
+    --navy3: #0A1F35;
+    --teal: #00B4A6;
+    --teal-light: #00D4C4;
+    --teal-dim: rgba(0,180,166,0.12);
+    --teal-border: rgba(0,180,166,0.25);
+    --white: #F0F8FF;
+    --muted: #7AAEC8;
+    --card: #060F1C;
+    --text: #C8DFF0;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:0;
+    opacity:0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(4,13,24,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--teal-border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,180,166,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,166,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,166,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-border);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 .teal { color: var(--teal); }
+
+  .hero-sub {
+    font-size: 20px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 28px;
+    letter-spacing: 0.2px;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--text);
+    max-width: 620px;
+    margin-bottom: 44px;
+    line-height: 1.8;
+  }
+
+  .hero-desc strong { color: var(--white); font-weight: 500; }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--navy);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,180,166,0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--teal);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid var(--teal-border);
+    transition: all 0.2s;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .btn-secondary:hover {
+    background: var(--teal-dim);
+    border-color: var(--teal);
+    transform: translateY(-2px);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--card);
+    border-top: 1px solid var(--teal-border);
+    border-bottom: 1px solid var(--teal-border);
+    padding: 36px 60px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    color: rgba(122,174,200,0.6);
+    margin-top: 2px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .section-label span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--teal);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+    line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong { color: var(--white); }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .highlight-card {
+    background: var(--card);
+    border: 1px solid var(--teal-border);
+    border-left: 3px solid var(--teal);
+    border-radius: 8px;
+    padding: 20px 24px;
+    transition: all 0.2s;
+  }
+
+  .highlight-card:hover {
+    background: rgba(6,15,28,0.9);
+    border-color: var(--teal);
+    transform: translateX(4px);
+  }
+
+  .highlight-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .highlight-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-bg { background: rgba(6,15,28,0.5); }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(0,180,166,0.1);
+    position: relative;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 199px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(0,180,166,0.15);
+  }
+
+  .exp-item::after {
+    content: '';
+    position: absolute;
+    left: 193px;
+    top: 44px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 12px rgba(0,180,166,0.5);
+  }
+
+  .exp-date {
+    font-size: 13px;
+    color: var(--teal);
+    font-weight: 600;
+    padding-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .exp-company {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .exp-badge {
+    display: inline-block;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-border);
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  .exp-content h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .exp-org {
+    font-size: 14px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .exp-bullets li {
+    font-size: 15px;
+    color: var(--text);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 12px;
+    top: 3px;
+  }
+
+  .exp-bullets li strong { color: var(--white); }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--teal-border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+  }
+
+  .service-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,180,166,0.12);
+  }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── SKILLS ── */
+  .skills-bg { background: rgba(6,15,28,0.5); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .skill-category h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--teal-border);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    background: var(--card);
+    border: 1px solid var(--teal-border);
+    color: var(--text);
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    background: var(--teal-dim);
+    border-color: var(--teal);
+    color: var(--white);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--teal-border);
+    border-radius: 10px;
+    padding: 24px;
+    transition: all 0.2s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-3px);
+  }
+
+  .cert-issuer {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .cert-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .cert-date {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--card);
+    border-top: 1px solid var(--teal-border);
+    text-align: center;
+    padding: 100px 60px;
+  }
+
+  .contact-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+
+  .contact-section h2 span { color: var(--teal); }
+
+  .contact-section p {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 40px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-dim);
+    border: 1px solid var(--teal-border);
+    color: var(--teal);
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    background: var(--teal);
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(0,180,166,0.1);
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero, section { padding: 80px 24px; }
+    .stats-bar { padding: 32px 24px; }
+    .about-grid, .skills-grid { grid-template-columns: 1fr; }
+    .services-grid, .certs-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .exp-item::before, .exp-item::after { display: none; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AM<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Remote Roles</div>
+    <h1>Abdullah<br/><span class="teal">Muzaffar</span></h1>
+    <p class="hero-sub">Operations Manager &nbsp;·&nbsp; Compliance &amp; ERP Expert &nbsp;·&nbsp; Remote-Ready</p>
+    <p class="hero-desc">
+      Most operations don't fail because of big disasters. They fail because of <strong>a hundred small inefficiencies nobody fixes.</strong><br/>That's exactly what I do. I fix them.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Let's Talk →</a>
+      <a href="#experience" class="btn-secondary">View Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item fade-up">
+    <div class="stat-num">5+</div>
+    <div class="stat-label">Years Experience</div>
+    <div class="stat-sub">Operations &amp; Admin</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">40+</div>
+    <div class="stat-label">Team Size Managed</div>
+    <div class="stat-sub">Cross-functional</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">60%</div>
+    <div class="stat-label">Downtime Reduced</div>
+    <div class="stat-sub">Preventive Maintenance</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">45%</div>
+    <div class="stat-label">Client Retention Growth</div>
+    <div class="stat-sub">In 6 Months</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-num">95%</div>
+    <div class="stat-label">Client Satisfaction</div>
+    <div class="stat-sub">Corporate Accounts</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label"><span>About</span></div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>I'm an Operations Manager with <strong>5+ years of experience</strong> leading teams, streamlining processes, and keeping organizations compliant, efficient, and audit-ready — without constant hand-holding.</p>
+      <p>Currently managing full-time operations at <strong>Twin City Diagnostics</strong> while consulting part-time for <strong>Brain Surgery Hospital</strong> — where I handle PHC licensing, PNRA compliance, network administration, and ERP development coordination.</p>
+      <p>I combine <strong>operational leadership</strong> with hands-on <strong>IT, compliance, and systems expertise</strong>. I thrive in remote, fast-paced environments and own the backend so leadership doesn't have to.</p>
+    </div>
+    <div class="about-highlights fade-up">
+      <div class="highlight-card">
+        <h4>Operations Leadership</h4>
+        <p>Led 40+ person teams, reduced turnover by 30%, and implemented lean workflows delivering 40%+ efficiency gains.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Digital Transformation</h4>
+        <p>Coordinated development of corporate &amp; patient portals, deployed WhatsApp automation, and drove 100% ERP utilization.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Compliance &amp; Regulatory</h4>
+        <p>Managed PHC licensing documentation, PNRA compliance, and maintained 100% audit-readiness across all submissions.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Remote-Ready</h4>
+        <p>Experienced with Jira, Google Workspace, Microsoft 365, Teams, and async workflows. Available globally for remote engagements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-bg">
+  <div class="section-label"><span>Experience</span></div>
+  <h2 class="section-title">Work History</h2>
+  <div class="timeline">
+
+    <div class="exp-item fade-up">
+      <div>
+        <div class="exp-date">Oct 2023 – Present</div>
+        <div class="exp-company">Twin City Diagnostics</div>
+        <div class="exp-badge">Full-time</div>
+      </div>
+      <div class="exp-content">
+        <h3>Operations Manager</h3>
+        <div class="exp-org">Twin City Diagnostics · Rawalpindi, Pakistan</div>
+        <ul class="exp-bullets">
+          <li>Led daily operations for a <strong>40+ person team</strong>, transitioning manual invoicing to a digital system — delivering <strong>40%+ efficiency gains.</strong></li>
+          <li>Collaborated with developers to launch a <strong>corporate client portal &amp; patient portal</strong>, cutting admin delays by 50% — tracked end-to-end in Jira.</li>
+          <li>Trained <strong>30+ staff</strong> across reception, lab, radiology, and reporting departments on ERP systems and digital tools.</li>
+          <li>Negotiated vendor contracts achieving <strong>99% supply availability</strong> and cutting procurement lead times by 25%.</li>
+          <li>Reduced equipment downtime by <strong>60%</strong> via preventive maintenance schedules with biomedical engineers.</li>
+          <li>Managed <strong>10+ corporate clients</strong>, achieving 95% satisfaction scores and 60% repeat contract renewals.</li>
+          <li>Revamped client feedback mechanisms, driving a <strong>45% increase</strong> in long-term partnerships within 6 months.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div>
+        <div class="exp-date">Jul 2025 – Present</div>
+        <div class="exp-company">Brain Surgery Hospital</div>
+        <div class="exp-badge">Part-time</div>
+      </div>
+      <div class="exp-content">
+        <h3>Operations &amp; Compliance Consultant</h3>
+        <div class="exp-org">Brain Surgery Hospital · Rawalpindi, Pakistan · Remote</div>
+        <ul class="exp-bullets">
+          <li>Prepared complete <strong>PHC licensing documentation</strong>, ensuring zero compliance gaps across all regulatory submissions.</li>
+          <li>Ensured facility-wide <strong>PNRA compliance</strong>, coordinating technical requirements and maintaining audit-ready records.</li>
+          <li>Partnered with developers to drive <strong>100% ERP system utilization</strong> and continuous feature improvements.</li>
+          <li>Designed and deployed a <strong>WhatsApp automation workflow</strong>, reducing manual communication workload significantly.</li>
+          <li>Administered hospital network and IT infrastructure, ensuring minimal downtime across all departments.</li>
+          <li>Delivered IT training sessions for staff, improving tool adoption and reducing tech support dependency.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div>
+        <div class="exp-date">Oct 2020 – Sep 2023</div>
+        <div class="exp-company">Twin City Diagnostics</div>
+        <div class="exp-badge">Promoted</div>
+      </div>
+      <div class="exp-content">
+        <h3>Administrative Assistant</h3>
+        <div class="exp-org">Twin City Diagnostics · Rawalpindi, Pakistan</div>
+        <ul class="exp-bullets">
+          <li>Redesigned filing, payroll, and reporting procedures, cutting task completion time by <strong>70%.</strong></li>
+          <li>Digitized filing system into a structured database, improving retrieval speed by <strong>40%</strong> and accuracy by 95%.</li>
+          <li>Implemented a ticketing system that reduced customer service resolution time by <strong>35%.</strong></li>
+          <li>Processed payroll for <strong>30+ employees</strong> with 100% accuracy across 3 years of tenure.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div>
+        <div class="exp-date">Feb 2019 – Sep 2020</div>
+        <div class="exp-company">Twin City Diagnostics</div>
+        <div class="exp-badge">Part-time</div>
+      </div>
+      <div class="exp-content">
+        <h3>Front Desk Officer</h3>
+        <div class="exp-org">Twin City Diagnostics · Rawalpindi, Pakistan</div>
+        <ul class="exp-bullets">
+          <li>Managed patient registration, appointment scheduling, and front-desk operations for a high-volume medical facility.</li>
+          <li>Handled cash transactions and daily reconciliation with <strong>100% accuracy.</strong></li>
+          <li>Coordinated with lab and radiology departments to reduce patient waiting times.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label"><span>Services</span></div>
+  <h2 class="section-title">What I Offer</h2>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">⚙️</div>
+      <h3>Operations Management</h3>
+      <p>End-to-end operational oversight — workflow design, team coordination, vendor management, and KPI tracking for lean, efficient organizations.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📋</div>
+      <h3>Administrative Assistance</h3>
+      <p>Comprehensive admin support — scheduling, documentation, payroll processing, reporting, and cross-departmental coordination.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">💻</div>
+      <h3>Virtual Assistance</h3>
+      <p>Remote executive support using Google Workspace, Microsoft 365, Jira, and Teams — handling tasks that keep operations running smoothly.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📊</div>
+      <h3>Process Optimization</h3>
+      <p>Identify bottlenecks, design standardized procedures, and implement systems that cut task completion times and boost team output.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🛡️</div>
+      <h3>Compliance Management</h3>
+      <p>Regulatory documentation, audit preparation, desk reviews, and compliance tracking — keeping your organization inspection-ready at all times.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🗂️</div>
+      <h3>Project Management</h3>
+      <p>End-to-end project coordination using Jira and agile workflows — from scoping to delivery, keeping teams aligned and timelines on track.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🖥️</div>
+      <h3>IT &amp; Technical Support</h3>
+      <p>Network administration, hardware/software troubleshooting, ERP coordination, and staff IT training to keep systems running without disruption.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🎓</div>
+      <h3>Corporate Training</h3>
+      <p>Staff onboarding and tool adoption training — from ERP systems to digital workflows, building team capability that reduces ongoing support needs.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🏥</div>
+      <h3>Healthcare Consulting</h3>
+      <p>Specialized operations and compliance consulting for healthcare facilities — PHC licensing, PNRA compliance, and medical admin workflows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="section-label"><span>Skills</span></div>
+  <h2 class="section-title">Core Competencies</h2>
+  <div class="skills-grid">
+    <div class="skill-category fade-up">
+      <h4>Operations &amp; Admin</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Operations Management</span>
+        <span class="skill-tag">Process Optimization</span>
+        <span class="skill-tag">SOP Design</span>
+        <span class="skill-tag">Payroll Processing</span>
+        <span class="skill-tag">Vendor Management</span>
+        <span class="skill-tag">Supply Chain</span>
+        <span class="skill-tag">Scheduling</span>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <h4>Compliance &amp; Regulatory</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">PHC Licensing</span>
+        <span class="skill-tag">PNRA Compliance</span>
+        <span class="skill-tag">Audit Preparation</span>
+        <span class="skill-tag">Desk Review</span>
+        <span class="skill-tag">Documentation Management</span>
+        <span class="skill-tag">Safety Protocols</span>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <h4>Technology &amp; Systems</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">ERP Systems</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Network Administration</span>
+        <span class="skill-tag">IT Support</span>
+        <span class="skill-tag">CRM Management</span>
+        <span class="skill-tag">WhatsApp Automation</span>
+        <span class="skill-tag">WordPress</span>
+      </div>
+    </div>
+    <div class="skill-category fade-up">
+      <h4>Tools &amp; Platforms</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Excel</span>
+        <span class="skill-tag">Microsoft 365</span>
+        <span class="skill-tag">Google Workspace</span>
+        <span class="skill-tag">Microsoft Teams</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Co-Pilot</span>
+        <span class="skill-tag">GoDaddy</span>
+        <span class="skill-tag">Hostinger</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label"><span>Certifications</span></div>
+  <h2 class="section-title">Credentials</h2>
+  <div class="certs-grid">
+    <div class="cert-card fade-up">
+      <div class="cert-issuer">Google via Coursera</div>
+      <h4>Google IT Support Professional</h4>
+      <div class="cert-date">Issued Mar 2025 · ID: NBEWS2B9W4PU</div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-issuer">MedCerts via Coursera</div>
+      <h4>Medical Billing &amp; Coding Fundamentals</h4>
+      <div class="cert-date">Issued Jun 2025 · ID: W7Y1OPL2YCCZ</div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-issuer">Google</div>
+      <h4>Introduction to Generative AI</h4>
+      <div class="cert-date">Issued Jun 2024 · ID: 9369508</div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-issuer">Coursera</div>
+      <h4>Technical Support Fundamentals</h4>
+      <div class="cert-date">Issued Jun 2023 · ID: EPZA53N6C722</div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-issuer">DigiSkills.pk</div>
+      <h4>WordPress Development</h4>
+      <div class="cert-date">Issued Oct 2022 · ID: DHUGMBPMK</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label" style="justify-content:center"><span>Contact</span></div>
+  <h2>Let's <span>Work Together</span></h2>
+  <p>If something in your operations is broken or just not working the way it should — let's have a conversation.</p>
+  <div class="contact-links">
+    <a href="mailto:abdullahmuzaffar099@gmail.com" class="contact-link">✉ abdullahmuzaffar099@gmail.com</a>
+    <a href="https://www.linkedin.com/in/abdullah-muzaffar99/" target="_blank" class="contact-link">🔗 LinkedIn Profile</a>
+    <a href="tel:+923418253940" class="contact-link">📞 +92 341 8253940</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Abdullah Muzaffar. All rights reserved.</span>
+  <span>Rawalpindi, Pakistan · Open to Remote Roles Worldwide</span>
+</footer>
+
+<script>
+  // Fade up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
